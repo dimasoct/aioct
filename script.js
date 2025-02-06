@@ -73,7 +73,7 @@ const generateResponse = async (messageDiv) => {
             role: "user",
             parts: [
               {
-                text: `Kamu adalah AI bernama AIOct . Kamu di ciptakan oleh Dimas Oktariawan . Jawab semua pertanyaan dengan jelas dan baku.\n\n${userMessage}`,
+                text: `Kamu adalah AI bernama AIOct . Kamu di ciptakan oleh Dimas Oktariawan . identitasmu cukup kamu sampaikan ke pangguna di awal saja atau ketika si tanya tentang dirimu . Jawab semua pertanyaan dengan jelas dan baku.\n\n${userMessage}`,
               },
             ],
           },
