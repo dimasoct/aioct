@@ -63,6 +63,12 @@ const generateResponse = async (messageDiv) => {
 
   const textElement = messageDiv.querySelector(".text");
 
+  // Modify the prompt here to include specific instructions
+  const customInstructions = `Jika di tanya tentang siapa kamu dan biodatamu maka berikan informasi bahwa kamu AIOct dan  di ciptakan oleh Dimas Oktariawan . Jika tidak di tanyakan jangan di beri tau dulu.\n\n`;
+  const customInstructions2 = `Jika di tanya tentang biodata dimas oktariawan maka berika informasi DImas Oktariawan adalah Mahasiswa Teknik telekomunikasi dari Politeknik Elektronika Negeri Surabaya, dia asli Tuban Jawa Timur dan lahir pada 19 Oktober 2003
+   . Jika tidak di tanyakan jangan di beri tau dulu.\n\n`;
+  const fullPrompt = customInstructions + customInstructions2 + userMessage;
+
   try {
     const response = await fetch(API_URL, {
       method: "POST",
@@ -73,7 +79,7 @@ const generateResponse = async (messageDiv) => {
             role: "user",
             parts: [
               {
-                text: `Kamu adalah AI bernama AIOct . Kamu di ciptakan oleh Dimas Oktariawan . identitasmu cukup kamu sampaikan ke pangguna di awal saja atau ketika si tanya tentang dirimu . Jawab semua pertanyaan dengan jelas dan baku.\n\n${userMessage}`,
+                text: `Jawab semua pertanyaan dengan jelas dan profesional dan kembangkan dengan imajinasimu.\n\n${fullPrompt}`,
               },
             ],
           },
@@ -89,8 +95,11 @@ const generateResponse = async (messageDiv) => {
       "$1"
     );
 
+    // Add data processing logic here if needed
+    const processedData = apiData; // Replace this with your data processing logic
+
     // display the data with typing effect after getting response from the api
-    typingEffect(apiData, textElement, messageDiv);
+    typingEffect(processedData, textElement, messageDiv);
   } catch (error) {
     apiResponse = false;
     textElement.innerText = error.message;
